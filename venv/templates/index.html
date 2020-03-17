@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>首页</title>
+    <link href="/static/css/bootstrap.css" rel="stylesheet">
+    <link href="/static/css/bootstrap-theme.css" rel="stylesheet">
+
+    <script src="/static/js/bootstrap.js"></script>
+    <script src="/static/js/npm.js"></script>
+    <script src="/static/js/jquery-3.1.1.min.js"></script>
+    <script src="/static/js/myJS.js" language="text/javascript"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clappr@latest/dist/clappr.min.js"></script>
+    <script type="text/javascript"
+            src="https://cdn.jsdelivr.net/clappr.thumbnails-plugin/latest/clappr-thumbnails-plugin.js"></script>
+    <script type="text/javascript"
+            src="https://cdn.jsdelivr.net/npm/clappr-markers-plugin@latest/dist/clappr-markers-plugin.js"></script>
+
+</head>
+<body>
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <ul class="nav navbar-nav">
+            <li class="active"><a href="#">zzx存储小屋</a></li>
+            <li><a href="#">首页</a></li>
+            <li><a href="#" onclick="ts()">关于</a></li>
+            <li><a href="#" onclick="ts()">登录</a></li>
+        </ul>
+    </div>
+</nav>
+
+<div class="panel panel-default ">
+    <div class="panel-heading">
+        <h3 class="panel-title" align="center"></h3>
+    </div>
+    <div class="panel-body" align="center">
+        <!--<video src="/static/videos/1.mp4" controls="controls" height="600px" width="800px"></video>-->
+        <div id="player"></div>
+        <script>
+            var thumbs = [];
+            for (var i=0; i<104; i++) {
+            thumbs.push({
+                url: "http://tjenkinson.me/clappr-thumbnails-plugin/assets/thumbnails/thumb_"+(i+1)+".jpg",
+                time: 1 + (i*2)
+                });
+            }
+            var player = new Clappr.Player({
+                source: "/static/videos/1.mp4",
+                parentId: "#player",
+                    plugins: {
+                        core: [ClapprThumbnailsPlugin,ClapprMarkersPlugin],
+                    },
+                scrubThumbnails: {
+                    backdropHeight: 64, // set to 0 or null to disable backdrop
+                    spotlightHeight: 84, // set to 0 or null to disable spotlight
+                    backdropMinOpacity: 0.4, // optional
+                    backdropMaxOpacity: 1, // optional
+                    thumbs: thumbs
+                },
+                markersPlugin: {
+                    markers: [
+                    new ClapprMarkersPlugin.StandardMarker(0, "The beginning!"),
+                    new ClapprMarkersPlugin.StandardMarker(90, "Something interesting."),
+                    new ClapprMarkersPlugin.StandardMarker(450, "The conclusion.")
+                ],
+                tooltipBottomMargin: 17 // optional
+            }
+            });
+        </script>
+    </div>
+</div>
+</body>
+</html>
